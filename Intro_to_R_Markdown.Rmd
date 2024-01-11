@@ -268,7 +268,7 @@ iris <- read.csv("data/iris.csv")
 
 - Use _hist()_ function to plot histogram
 ```{r}
-hist(iris$Sepal.Length)
+_hist(iris$Sepal.Length)_
 
 ```
 
