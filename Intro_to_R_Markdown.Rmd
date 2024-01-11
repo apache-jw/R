@@ -1,0 +1,299 @@
+---
+title: ""
+author: ""
+output: pdf_document
+date: ""
+---
+
+## Agenda
+
+- Introduction to R and RStudio
+    - Understand the interface
+    - Brief introduction of R syntax and constructs
+    - Import a dataset
+    - Run R code
+    - Install and use R packages
+- Dplyr: grammar for data manipulation
+
+## Software Tools: R and RStudio
+
+- **R** is a statistical programming language
+    - R does all the actual computational work
+- **RStudio** is an _Integrated Development Environemnt_ (IDE)
+    - Sits top of R, it is a graphical interface between R and you (users)
+    - Makes R much more user-friendly
+    - We will always work in RStudio
+
+## RStudio Interface
+
+![RStudio screenshot](r1.png){width=95%}
+
+## RStudio Components
+
+1. Script Panel
+    - This is where the R code is shown and edited
+    - When you open a R code file, its content shows up here
+2. Console Panel
+    - This is where R code is executed
+    - Results will show up here
+    - If there is an error in your code, the error message will also show up here
+3. Environment Panel
+    - This is where the variables and data are displayed
+    - It helps to keep track of the variables and data you have
+4. Utility Panel
+    - This window includes several tabs
+        - Files: shows the path to your current file, not often used
+        - Plots: if you use R to plot a graph, it will show up here
+        - Packages: install/import packages, more on this later
+        - Help: manuals and documentations to every R functions, very useful
+
+## R Syntax and Constructs
+
+- In its simplest form, R can be used as a calculator
+
+```{r}
+
+
+```
+
+
+- Variables in R are like _placeholders_
+    - They contain values we are working with
+
+```{r}
+
+
+```
+
+
+- Obviously, R can do much more
+    - Most of R's value comes from working with external data
+- Data in R can take the forms of **vectors**, **matrices**, and **data frames**
+    - We mostly work with data frames
+- **Data frame** looks just like an ordinary data table or spreadsheet (as in Excel)
+    - Each row is one record
+    - Each column is a variable. Different columns can have different data types
+
+
+
+- The use of **Functions** makes R very powerful
+- **Functions** are defined operations performed on data
+- You can either use existing functions or make functions by your self
+- Each function has certain **input**, **parameters**, and **output**
+    - Input is the data you want to manipulate
+    - Parameters are extra conditions or specifications
+    - Output is the results
+- In RStudio, you can look up a function's details in the "_Help_" tab
+    - E.g., let's look up the function _sort()_
+
+
+```{r}
+# vector
+
+# matrix
+
+```
+
+## Import Data into R
+
+- R can handle all kinds of data files. We will mostly deal with _csv_ files
+    - Stands for _comma separated values_, i.e., values separated by commas
+- Use **_read.csv()_** function to import csv data
+    - You need to specify path to the data file
+    - By default, comma is used as field delimiter. Delimiter can also be other characters (e.g., tab)
+    - First row is used as variable names by default
+    - The output is a dataframe
+
+```{r, eval=FALSE}
+
+data <- read.csv(PATH-TO-FILE)
+
+```
+
+
+Two ways to specify path to the data file
+
+1. Specify the **full path**
+    - Make sure to use "/", not "\\", between directories
+```{r, eval=FALSE}
+data <- read.csv("~/Dropbox/Teaching SP22/K579/Week 1/scripts/toy data frame.csv")
+```
+
+2. **First, store data file and R script in the same location**. Then, in Rstudio, click "Session" in menu bar, go to "set working directory", select "to source file location". Finally, simply use file name as the path
+```{r}
+# after setting working directory to source file location
+
+```
+
+## Examine Data Frame
+
+```{r}
+# access the value in row 2 and column 2
+
+# access the values in column "Gender"
+
+```
+
+
+```{r}
+# function "summary()" can summarize variables
+
+```
+
+## Install and Use R Packages
+
+- R packages are user-created programs to enhance the capability of R
+- To install a package in RStudio, use the "Packages" tab in the Utility panel. Click on "Install", input the package name, then click "Install". RStudio will do the rest for you
+
+- Or, just run ```install.packages("Package Name")```
+- Let's install the package named ```dplyr```
+
+- To use a package, you need to first load it using the _library()_ function
+```{r, message=FALSE}
+
+```
+- A package only needs to be loaded once in one script
+
+
+## Use R for Data Cleaning
+
+- We will learn how to use R and ```dplyr``` to:
+    - Arrange data based on one or more variables
+    - Filtering data
+    - Creating new variables
+    - Joining two data tables
+    - Grouping data by one or more variables and generate summary statistics
+
+
+
+- We will use the following toy data frame
+```{r}
+
+```
+
+### Arrange Data
+
+- Use ```arrange``` function to sort the data
+- ```dplyr``` package offer a nice way to writing code using the %>% sign
+
+```{r}
+# sort data by age, from young to old
+
+
+
+# sort data by age, from old to young
+
+
+
+```
+
+### Subset Data
+
+- Use ```filter()``` function to select subsets of data according to some rules
+```{r}
+# select all female persons from the data
+
+
+
+# select all male persons older than 20
+
+
+
+```
+- In R (and many other programming languages), "==" means equal
+
+### Select Variables
+
+- Use ```select()``` function to select certain variables
+```{r}
+# select gender and age
+
+
+
+# select all variables but ID
+
+
+
+```
+
+### Create New Variables
+
+- Use ```mutate()``` function to create new variables
+```{r}
+# create a new variable, BMI, based on height and weight
+# BMI = weight (in kilograms) / height (in meters) squared
+
+
+
+
+
+```
+
+### Join Two Data Tables
+
+- Use ```join()``` and related function to join two tables
+```{r}
+
+
+
+```
+
+### Group data and summarize
+
+- Use ```group_by()``` followed by ```summarise()```
+- Notice that %>% can be chained together to perform a sequence of manipulations
+```{r}
+# group by gender and summarize the average age, height, and weight of each group
+
+
+```
+
+## Use R for Visualization
+
+- We will learn how to use R to plot:
+    - Histogram
+    - Boxplot
+    - Scatterplot
+    - Scatterplot Matrix
+- We will use the Iris dataset
+```{r}
+
+
+```
+
+###Histogram
+
+- Use _hist()_ function to plot histogram
+```{r}
+
+```
+
+### Boxplot
+
+- Use _boxplot()_ function to plot boxplot
+```{r}
+
+
+```
+
+### Scatterplot
+
+- Use _plot()_ function to plot scatterplot
+```{r}
+
+
+
+```
+
+### Scatterplot Matrix
+
+- Use _pairs()_ function to plot scatterplot matrix
+```{r}
+
+
+```
+
+## Hands-on Practice
+
+- Open "HandsOn-Data-Process.R" in Rstudio
+- Finish each practice, following the steps indicated in comments
