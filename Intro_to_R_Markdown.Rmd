@@ -116,8 +116,13 @@ Two ways to specify path to the data file
 1. Specify the **full path**
     - Make sure to use "/", not "\\", between directories
 ```{r, eval=FALSE}
-data <- read.csv("~/Dropbox/Teaching SP22/K579/Week 1/scripts/toy data frame.csv")
+toy_data <- read.csv("data/toy data frame.csv")
 ```
+
+
+Warning message:
+In read.table(file = file, header = header, sep = sep, quote = quote,  :
+    xincomplete final line found by readTableHeader on 'data/toy data frame.csv'
 
 2. **First, store data file and R script in the same location**. Then, in Rstudio, click "Session" in menu bar, go to "set working directory", select "to source file location". Finally, simply use file name as the path
 ```{r}

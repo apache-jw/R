@@ -20,3 +20,11 @@ install.packages(c("dplyr", "haven", "jsonlite", "ragg", "readr", "reprex", "rla
 
 
 library(datasets)
+
+install.packages("arules")
+library(arules)
+
+
+install.packages("rmarkdown")
+install.packages("knitr")
+install.packages("languageserver")
