@@ -129,15 +129,20 @@ toy_data <- read.csv("data/toy data frame.csv")
 
 ```{r}
 # access the value in row 2 and column 2
+toy_data[2,2]
+
 
 # access the values in column "Gender"
+toy_data$Gender
 
 ```
 
 
 ```{r}
 # function "summary()" can summarize variables
+summary(toy_data)
 
+```
 ```
 
 ## Install and Use R Packages
@@ -178,12 +183,12 @@ toy_data <- read.csv("data/toy data frame.csv")
 
 ```{r}
 # sort data by age, from young to old
-
+toy_data %>% arrange(Age)
 
 
 # sort data by age, from old to young
 
-
+toy_data %>% arrange(desc(Age))
 
 ```
 

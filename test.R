@@ -8,7 +8,7 @@ library(devtools)
 
 
 ### re tooling test
-
+install.packages("tidyverse")
 library(tidyverse)
 
 tidyverse_conflicts()
@@ -28,3 +28,6 @@ library(arules)
 install.packages("rmarkdown")
 install.packages("knitr")
 install.packages("languageserver")
+
+install.packages("dplyr")
+
