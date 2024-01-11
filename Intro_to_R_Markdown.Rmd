@@ -193,30 +193,28 @@ toy_data %>% arrange(desc(Age))
 ```
 
 ### Subset Data
-
+library(tidyverse)
 - Use ```filter()``` function to select subsets of data according to some rules
 ```{r}
 # select all female persons from the data
-
+select(toy_data$Gender == "F")
 
 
 # select all male persons older than 20
-
-
+select(toy_data$Gender == "M" & toy_data$Age > 20)
 
 ```
-- In R (and many other programming languages), "==" means equal
-
 ### Select Variables
+
 
 - Use ```select()``` function to select certain variables
 ```{r}
 # select gender and age
 
-
+select(toy_data$Gender, toy_data$Age)
 
 # select all variables but ID
-
+select(toy_data, -ID)
 
 
 ```
@@ -227,7 +225,7 @@ toy_data %>% arrange(desc(Age))
 ```{r}
 # create a new variable, BMI, based on height and weight
 # BMI = weight (in kilograms) / height (in meters) squared
-
+mutate(toy_data, BMI = Weight / (Height / 100) ^ 2)
 
 
 
@@ -238,7 +236,7 @@ toy_data %>% arrange(desc(Age))
 
 - Use ```join()``` and related function to join two tables
 ```{r}
-
+join(toy_data, toy_data2, by = "ID")
 
 
 ```
@@ -249,7 +247,7 @@ toy_data %>% arrange(desc(Age))
 - Notice that %>% can be chained together to perform a sequence of manipulations
 ```{r}
 # group by gender and summarize the average age, height, and weight of each group
-
+group_by(toy_data$Gender) %>% summarise(Age = mean(Age), Height = mean(Height), Weight = mean(Weight)
 
 ```
 
@@ -262,7 +260,7 @@ toy_data %>% arrange(desc(Age))
     - Scatterplot Matrix
 - We will use the Iris dataset
 ```{r}
-
+iris <- read.csv("data/iris.csv")
 
 ```
 
@@ -270,6 +268,7 @@ toy_data %>% arrange(desc(Age))
 
 - Use _hist()_ function to plot histogram
 ```{r}
+hist(iris$Sepal.Length)
 
 ```
 
@@ -302,3 +301,8 @@ toy_data %>% arrange(desc(Age))
 
 - Open "HandsOn-Data-Process.R" in Rstudio
 - Finish each practice, following the steps indicated in comments
+
+pairs(iris[,1:4], lower.panel = NULL, cp; =iris$Species)
+
+par(xpd =T) 
+legend(2.5, 8, legend = c("setosa", "versicolor", "virginica"), col = c("red", "green", "blue"), pch = 1)
