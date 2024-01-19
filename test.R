@@ -31,6 +31,10 @@ install.packages("languageserver")
 
 install.packages("dplyr")
 
+#readxl::read_excel("\C:\Users\Wiela\Desktop\R\data\data manipulation2.csv")
+
+install.packages('installr')
+installr::updateR()
 
 
 

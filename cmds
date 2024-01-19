@@ -1,0 +1,10 @@
+git fetch upstream
+git merge upstream/master
+
+
+git pull upstream master
+git push origin master
+
+
+git remote set-url origin git@github.com:apache-jw/gt.git
+git remote set-url upstream git@github.com:rstudio/gt.git
