@@ -1,0 +1,27 @@
+library(sf)
+
+library(dplyr)
+library(tidyverse)
+library(rmarkdown)
+library(knitr)
+rm(list = ls())
+vessel = sf::st_read("C:/Users/Wiela/Desktop/R/ACS_2021_5YR_BG_18_INDIANA.gdb", layer="ACS_2021_5YR_BG_18_INDIANA")
+vessel = vessel %>% st_transform(w)
+
+install.packages("arcgisbinding", repos="https://r.esri.com", type="win.binary")
+
+
+layers <- st_layers("C:/Users/Wiela/Desktop/R/ACS_2021_5YR_BG_18_INDIANA.gdb")
+##print(layers)
+data <- st_read("C:/Users/Wiela/Desktop/R/ACS_2021_5YR_BG_18_INDIANA.gdb", layer = layers)
+data <- st_transform(data, crs = 4326)
+
+# Reading spatial data into an sf object
+#sf_data <- st_read("your_data_source", layer = "your_layer_with_geometry")
+# Transforming the coordinate reference system
+sf_data_transformed <- st_transform(vessel, crs=4326)
+##
+# Plotting the data
+plot(sf_data_transformed)
+#> Warning in st_transform.sfc(sf_data, crs = 4326): st_transform: missing
+
